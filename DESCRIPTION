@@ -1,0 +1,13 @@
+Package: bayesboot
+Type: Package
+Title: Bayesian bootstrap 
+Version: 0.1.0
+Author: Johannes Rajala
+Maintainer: Johannes Rajala <jtraja@proton.me>
+Description: Bayesian bootstrap function. Uses (real) dirichlet weights instead of (integer) multinomial weights.  
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    gtools (>= 3.9.5)
+RoxygenNote: 7.2.3

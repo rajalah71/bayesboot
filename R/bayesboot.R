@@ -1,34 +1,39 @@
 #' Bayesian bootstrap
 #'
-#' Calculates the value of a function on the bayesian bootstrap data
+#' Calculates the value of a function on the bayesian bootstrap data. Uses the dirichlet distribution to generate positive real valued weights for the data as opposed to using integer weights (normal bootstrapo).
 #'
 #' @param data Data
 #' @param f A function to estimate with bootstrap
 #' @param b Bootstrap sample size
 #' @param plot Should the results be plotted (default = TRUE)
+#' @param quantilepoints Quantile points to be plotted (default = c(0.025, 0.975))
 #'
 #' @return Values of the the function 'f' calculated on the bayesian bootstrap data
 #'
 #' @importFrom gtools rdirichlet
+#' @importFrom graphics hist legend lines segments
+#' @importFrom stats quantile
 #'
 #' @examples
-#' # Calculate bootstdocrap means
+#' # Calculate bootstrap means
 #' data = c(1, 1, 3, 4, 7, 12)
-#' bootstrap_bayes(data)
+#' bayesboot(data)
 #'
 #' @export
-bootstrap_bayes = function(data, f = mean, b = 10000, plot = TRUE, quantilepoints = c(0.025, 0.975)){
+bayesboot = function(data, f = mean, b = 10000, plot = TRUE, quantilepoints = c(0.025, 0.975)){
   boot_results = rep(NA, b)
   len = length(data)
 
   for(i in (1:b)){
-    weights = rdirichlet(1, rep(1, len))*len # lasketaan painot dirichlet jakaumasta
-    boot_results[i] = f(data*weights) # kerrotaan data painoilla
+    # Weights from dirichlet distribution
+    weights = rdirichlet(1, rep(1, len))*len
+    # Calculate the value of the function on the data with the weights
+    boot_results[i] = f(data*weights)
   }
 
   # Plot if plot == TRUE
   if(plot == TRUE){
-    hist(boot_results, main = "Bayesian bootstrap", xlab = "Values", freq = FALSE, )
+    hist(boot_results, main = "Bayesian bootstrap", xlab = "Values", freq = FALSE)
     # add quantiles 0.025 and 0.975
     quantiles = quantile(boot_results, quantilepoints)
     # add horizontal lines to indicate the quantiles

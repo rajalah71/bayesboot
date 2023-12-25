@@ -21,14 +21,17 @@
 #'
 #' @export
 bayesboot = function(data, f = mean, b = 10000, plot = TRUE, quantilepoints = c(0.025, 0.975)){
+  # Initialize the results vector and calculate the length of the data
   boot_results = rep(NA, b)
   len = length(data)
 
   for(i in (1:b)){
     # Weights from dirichlet distribution
-    weights = rdirichlet(1, rep(1, len))*len
-    # Calculate the value of the function on the data with the weights
-    boot_results[i] = f(data*weights)
+    weights = as.vector(rdirichlet(1, rep(1, len))*len)
+    # Multiply the data with the weights
+    weighted = data*weights
+    # Calculate the value of the function on the weighted data
+    boot_results[i] = f(weighted)
   }
 
   # Plot if plot == TRUE

@@ -10,8 +10,8 @@ algorithm described by Rubin (1981),
 Bayesian bootstrap uses Dirichlet distribution (or some other way) to
 generate real valued weights summing up to $n$ – the length of the data
 – for each observation in the data set for $b$ times. For each bootstrap
-sample $j \in b$, the statistic of interest is calculated on the
-weighted data.
+sample $j\in b$, the statistic of interest is calculated on the weighted
+data.
 
 ## 1. Installation
 

@@ -6,7 +6,7 @@ date: "`r Sys.Date()`"
 
 This package provides a function to perform Bayesian bootstrap for a given statistic on a given data set. The function is based on the algorithm described by Rubin (1981), https://www.jstor.org/stable/2240875.
 
-Bayesian bootstrap uses Dirichlet distribution (or some other way) to generate real valued weights summing up to $n$ -- the length of the data -- for each observation in the data set for $b$ times. For each bootstrap sample $j \in b$, the statistic of interest is calculated on the weighted data. 
+Bayesian bootstrap uses Dirichlet distribution (or some other way) to generate real valued weights summing up to $n$ -- the length of the data -- for each observation in the data set for $b$ times. For each bootstrap sample $j\in b$, the statistic of interest is calculated on the weighted data. 
 
 ## 1. Installation
 
